@@ -34,4 +34,25 @@ public class CharacterScript : MonoBehaviour
         _damage = data.Damage;
         _overHealable = data.OverHealable;
     }
+
+    public virtual void Attack(CharacterScript enemy)
+    {
+        enemy._health -= _damage;
+    }
+
+    public void GetHeal(float amount)
+    {
+        if (_overHealable)
+        {
+            _health += amount;
+        }
+        else if(!_overHealable)
+        {
+            _health += amount;
+            if (_health < _maxHealth)
+            {
+                _health = _maxHealth;
+            }
+        }
+    }
 }
