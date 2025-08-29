@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdf8222cbc54d842b1c1aff0ec8c485, type: 3}
   m_Name: New ThemeSwitch
   m_EditorClassIdentifier: 
-  theme: 0
+  theme: 1
