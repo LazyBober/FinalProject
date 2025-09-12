@@ -1,54 +1,48 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GridCharacterPlacementTest : MonoBehaviour
 {
     [Header("Prefab to place")]
-    public GameObject placePrefab;
+    [SerializeField] private GameObject placePrefab;
 
     [Header("Options")]
-    public KeyCode placeKey = KeyCode.B;   // Press B to place
     public bool useGrid = true;
     public float gridSize = 1f;
 
     private bool placing = false;
-    private GameObject ghost;
+    private GameObject newPrefab;
+
+    [SerializeField] private ManaScript manaScript;
 
     private void Update()
     {
-        if (Input.GetKeyDown(placeKey))
-        {
-            // Start placement mode
-            placing = true;
-
-            if (ghost == null)
-                ghost = Instantiate(placePrefab);
-        }
-
         if (!placing) return;
 
         // Follow mouse
         Vector3 pos = GetMouseWorldPosition();
         if (useGrid) pos = SnapToGrid(pos);
-        ghost.transform.position = pos;
+        newPrefab.transform.position = pos;
 
         // Rotate with R
         if (Input.GetKeyDown(KeyCode.R))
-            ghost.transform.Rotate(0, 0, 90);
+            newPrefab.transform.Rotate(0, 0, 90);
 
         // Left click = confirm place
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(placePrefab, ghost.transform.position, ghost.transform.rotation);
-            Destroy(ghost);
-            ghost = null;
+            Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation);
+            Destroy(newPrefab);
+            newPrefab = null;
             placing = false; // exit placement mode
         }
 
         // Right click = cancel
         if (Input.GetMouseButtonDown(1))
         {
-            Destroy(ghost);
-            ghost = null;
+            Destroy(newPrefab);
+            newPrefab = null;
             placing = false;
         }
     }
@@ -68,5 +62,20 @@ public class GridCharacterPlacementTest : MonoBehaviour
             Mathf.Round(p.y / gridSize) * gridSize,
             0f
         );
+    }
+
+    public void StartPlacing()
+    {
+        if (manaScript.currentMana >= 3)
+        {
+            placing = true;
+
+            if (newPrefab == null)
+            {
+                newPrefab = Instantiate(placePrefab);
+            }
+
+            manaScript.currentMana -= 3;
+        }
     }
 }
