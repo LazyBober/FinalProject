@@ -34,5 +34,9 @@ public class ManaScript : MonoBehaviour
     private void Update()
     {
         text.text = $"mana: {currentMana}";
+        if (currentMana > maxMana)
+        {
+            currentMana = maxMana;
+        }
     }
 }
