@@ -16,8 +16,16 @@ public class GridCharacterPlacementTest : MonoBehaviour
 
     [SerializeField] private ManaScript manaScript;
 
+    private Color teamColor;
+    [SerializeField] private TeamColors teamColors;
+
+    private void Start()
+    {
+        teamColors.TeamColor = Color.blue;
+    }
     private void Update()
     {
+        teamColor = teamColors.TeamColor;
         if (!placing) return;
 
         // Follow mouse
@@ -32,7 +40,18 @@ public class GridCharacterPlacementTest : MonoBehaviour
         // Left click = confirm place
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation);
+            SpriteRenderer newPrefabRenderer = 
+            Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation).GetComponent<SpriteRenderer>();
+            newPrefabRenderer.material.color = teamColor;
+            if (teamColor == Color.blue)
+            {
+                teamColors.TeamColor = Color.red;
+            }
+            else if (teamColor == Color.red)
+            {
+                teamColors.TeamColor = Color.blue;
+            }
+            
             Destroy(newPrefab);
             newPrefab = null;
             placing = false; // exit placement mode
@@ -73,6 +92,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
             if (newPrefab == null)
             {
                 newPrefab = Instantiate(placePrefab);
+                
             }
 
             manaScript.currentMana -= 3;
