@@ -1,8 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TeamColors : MonoBehaviour
 {
-    public Color TeamColor;
+    [SerializeField] private Color teamColor;
+
+    public Color TeamColor
+    {
+        get
+        {
+            return teamColor;
+        }
+        set
+        {
+            teamColor = value;
+        }
+    }
 }

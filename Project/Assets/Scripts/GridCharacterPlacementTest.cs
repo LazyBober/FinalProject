@@ -1,6 +1,4 @@
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GridCharacterPlacementTest : MonoBehaviour
 {
@@ -8,16 +6,14 @@ public class GridCharacterPlacementTest : MonoBehaviour
     [SerializeField] private GameObject placePrefab;
 
     [Header("Options")]
-    public bool useGrid = true;
-    public float gridSize = 1f;
+    [SerializeField] private ManaScript manaScript;
+    [SerializeField] private TeamColors teamColors;
 
+    private bool useGrid = true;
+    private float gridSize = 1f;
+    private Color teamColor;
     private bool placing = false;
     private GameObject newPrefab;
-
-    [SerializeField] private ManaScript manaScript;
-
-    private Color teamColor;
-    [SerializeField] private TeamColors teamColors;
 
     private void Start()
     {
@@ -26,34 +22,32 @@ public class GridCharacterPlacementTest : MonoBehaviour
     private void Update()
     {
         teamColor = teamColors.TeamColor;
-        if (!placing) return;
-
+        if (!placing)
+        {
+            return;
+        }
         // Follow mouse
         Vector3 pos = GetMouseWorldPosition();
-        if (useGrid) pos = SnapToGrid(pos);
+        if (useGrid)
+        {
+            pos = SnapToGrid(pos);
+        }
         newPrefab.transform.position = pos;
 
         // Rotate with R
         if (Input.GetKeyDown(KeyCode.R))
+        {
             newPrefab.transform.Rotate(0, 0, 90);
+        }
 
         // Left click = confirm place
         if (Input.GetMouseButtonDown(0))
         {
-            SpriteRenderer newPrefabRenderer = 
+            SpriteRenderer newPrefabRenderer =
             Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation).GetComponent<SpriteRenderer>();
             newPrefabRenderer.material.color = teamColor;
-            if (teamColor == Color.blue)
-            {
-                teamColors.TeamColor = Color.red;
-            }
-            else if (teamColor == Color.red)
-            {
-                teamColors.TeamColor = Color.blue;
-            }
-            
+            teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
             Destroy(newPrefab);
-            newPrefab = null;
             placing = false; // exit placement mode
         }
 
@@ -61,7 +55,6 @@ public class GridCharacterPlacementTest : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Destroy(newPrefab);
-            newPrefab = null;
             placing = false;
         }
     }
@@ -74,11 +67,11 @@ public class GridCharacterPlacementTest : MonoBehaviour
         return world;
     }
 
-    private Vector3 SnapToGrid(Vector3 p)
+    private Vector3 SnapToGrid(Vector3 pos)
     {
         return new Vector3(
-            Mathf.Round(p.x / gridSize) * gridSize,
-            Mathf.Round(p.y / gridSize) * gridSize,
+            Mathf.Round(pos.x / gridSize) * gridSize,
+            Mathf.Round(pos.y / gridSize) * gridSize,
             0f
         );
     }
@@ -92,7 +85,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
             if (newPrefab == null)
             {
                 newPrefab = Instantiate(placePrefab);
-                
+
             }
 
             manaScript.currentMana -= 3;
