@@ -17,4 +17,8 @@ public class SceneManagerScript : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void Local2Players ()
+    {
+        SceneManager.LoadScene(3);
+    }
 }
