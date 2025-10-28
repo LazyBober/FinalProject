@@ -6,11 +6,12 @@ public class GridCharacterPlacementTest : MonoBehaviour
     [SerializeField] private GameObject placePrefab;
 
     [Header("Options")]
-    [SerializeField] private ManaScript manaScript;
+    [SerializeField] private ManaScript manaScriptBlue;
+    [SerializeField] private ManaScript manaScriptRed;
     [SerializeField] private TeamColors teamColors;
 
     private bool useGrid = true;
-    private float gridSize = 1f;
+    private float gridSize = 0.5f;
     private Color teamColor;
     private bool placing = false;
     private GameObject newPrefab;
@@ -49,6 +50,14 @@ public class GridCharacterPlacementTest : MonoBehaviour
             teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
             Destroy(newPrefab);
             placing = false; // exit placement mode
+            if (teamColor == Color.red)
+            {
+                manaScriptRed.currentMana += 1;
+            }
+            if (teamColor == Color.blue)
+            {
+                manaScriptBlue.currentMana += 1;
+            }
         }
 
         // Right click = cancel
@@ -78,17 +87,50 @@ public class GridCharacterPlacementTest : MonoBehaviour
 
     public void StartPlacing()
     {
-        if (manaScript.currentMana >= 3)
+        if (teamColor == Color.blue)
         {
-            placing = true;
-
-            if (newPrefab == null)
+            if (manaScriptBlue.currentMana >= 2)
             {
-                newPrefab = Instantiate(placePrefab);
+                placing = true;
 
+                if (newPrefab == null)
+                {
+                    newPrefab = Instantiate(placePrefab);
+
+                }
+
+                manaScriptRed.currentMana -= 2;
+                
             }
-
-            manaScript.currentMana -= 3;
         }
+        if (teamColor == Color.red)
+        {
+            if (manaScriptRed.currentMana >= 2)
+            {
+                placing = true;
+
+                if (newPrefab == null)
+                {
+                    newPrefab = Instantiate(placePrefab);
+
+                }
+
+                manaScriptBlue.currentMana -= 2;
+                
+            }
+        }
+    }
+
+    public void SkipTurn()
+    {
+        if (teamColor == Color.red)
+        {
+            manaScriptRed.currentMana += 1;
+        }
+        if (teamColor == Color.blue)
+        {
+            manaScriptBlue.currentMana += 1;
+        }
+        teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
     }
 }

@@ -13,22 +13,17 @@ public class ManaScript : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI text;
 
-    public IEnumerator GiveMana()
+    public void GiveMana()
     {
-        while (true)
+        if (currentMana < maxMana)
         {
-            if (currentMana < maxMana)
-            {
-                currentMana++;
-            }
-
-            yield return new WaitForSeconds(giveManaInterval);
+            currentMana++;
         }
     }
 
     private void Start()
     {
-        StartCoroutine(GiveMana());
+        
     }
 
     private void Update()
