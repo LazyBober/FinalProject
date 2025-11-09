@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class MoveAllButtons : MonoBehaviour
 {
-    [SerializeField] private Button[] buttons; 
-    private bool moveRight = true;            
+    [SerializeField] private Button[] buttons;
+    private bool moveRight = true;
 
     void Start()
     {

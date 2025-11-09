@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,19 +15,19 @@ public class ButtonsTheme : MonoBehaviour
     public Button button7;
 
     List<Button> buttons = new List<Button>();
-    
+
     void Start()
     {
-        buttons.Add(button1); 
-        buttons.Add(button2); 
-        buttons.Add(button3); 
-        buttons.Add(button4); 
-        buttons.Add(button5); 
-        buttons.Add(button6); 
+        buttons.Add(button1);
+        buttons.Add(button2);
+        buttons.Add(button3);
+        buttons.Add(button4);
+        buttons.Add(button5);
+        buttons.Add(button6);
         buttons.Add(button7);
     }
 
-    
+
     void Update()
     {
         if (themeData.Theme == 0)

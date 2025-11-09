@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
@@ -10,7 +8,7 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] private bool _overHealable;
 
     public void TakeDamage(float amount)
-    { 
+    {
         _health -= amount;
         if (_health <= 0f)
         {
@@ -21,7 +19,7 @@ public class CharacterScript : MonoBehaviour
             Die();
         }
     }
-     
+
     public void Die()
     {
         Destroy(gameObject);
@@ -46,7 +44,7 @@ public class CharacterScript : MonoBehaviour
         {
             _health += amount;
         }
-        else if(!_overHealable)
+        else if (!_overHealable)
         {
             _health += amount;
             if (_health < _maxHealth)

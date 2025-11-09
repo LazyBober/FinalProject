@@ -27,7 +27,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
         {
             return;
         }
-        // Follow mouse
+
         Vector3 pos = GetMouseWorldPosition();
         if (useGrid)
         {
@@ -35,7 +35,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
         }
         newPrefab.transform.position = pos;
 
-        // Rotate with R
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             newPrefab.transform.Rotate(0, 0, 90);
@@ -46,10 +46,11 @@ public class GridCharacterPlacementTest : MonoBehaviour
         {
             SpriteRenderer newPrefabRenderer =
             Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation).GetComponent<SpriteRenderer>();
+
             newPrefabRenderer.material.color = teamColor;
             teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
             Destroy(newPrefab);
-            placing = false; // exit placement mode
+            placing = false;
             if (teamColor == Color.red)
             {
                 manaScriptRed.currentMana += 1;
@@ -60,7 +61,6 @@ public class GridCharacterPlacementTest : MonoBehaviour
             }
         }
 
-        // Right click = cancel
         if (Input.GetMouseButtonDown(1))
         {
             Destroy(newPrefab);
@@ -100,7 +100,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
                 }
 
                 manaScriptRed.currentMana -= 2;
-                
+
             }
         }
         if (teamColor == Color.red)
@@ -116,7 +116,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
                 }
 
                 manaScriptBlue.currentMana -= 2;
-                
+
             }
         }
     }

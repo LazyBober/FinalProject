@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ManaScript : MonoBehaviour
 {
@@ -23,7 +19,7 @@ public class ManaScript : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
