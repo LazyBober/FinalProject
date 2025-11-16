@@ -824,10 +824,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1039174229}
   - {fileID: 1064707394}
   - {fileID: 1450972773}
   - {fileID: 734765364}
-  - {fileID: 1039174229}
   - {fileID: 1244422672}
   - {fileID: 61823185}
   m_Father: {fileID: 0}
@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 734765366}
   - component: {fileID: 734765365}
   m_Layer: 5
-  m_Name: manaTextBlue
+  m_Name: manaTextRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd7291d48bac3144aa8c1723b8452cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMana: 0
+  currentMana: 2
   maxMana: 10
   giveManaInterval: 2
   text: {fileID: 734765366}
@@ -920,8 +920,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1189,7 +1189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 456, y: -403}
+  m_AnchoredPosition: {x: 387, y: -402}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1039174230
@@ -1255,6 +1255,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1039174230}
         m_TargetAssemblyTypeName: GridCharacterPlacementTest, Assembly-CSharp
         m_MethodName: SkipTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 158669591}
+        m_TargetAssemblyTypeName: MoveAllButtons, Assembly-CSharp
+        m_MethodName: MoveButtons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1472,8 +1484,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 393, y: 26}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 294, y: 26}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1064707395
 MonoBehaviour:
@@ -1488,7 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: -200
+    m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -1836,7 +1848,7 @@ GameObject:
   - component: {fileID: 1450972774}
   - component: {fileID: 1450972776}
   m_Layer: 5
-  m_Name: manaTextRed
+  m_Name: manaTextBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1890,8 +1902,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294901760
+  m_fontColor: {r: 0, g: 0, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1970,7 +1982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd7291d48bac3144aa8c1723b8452cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMana: 0
+  currentMana: 2
   maxMana: 10
   giveManaInterval: 2
   text: {fileID: 1450972774}

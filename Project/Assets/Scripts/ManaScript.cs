@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ManaScript : MonoBehaviour
 {
-    public int currentMana = 0;
+    public int currentMana = 2;
     [SerializeField] private int maxMana = 10;
     [SerializeField] private float giveManaInterval = 2f;
 
@@ -13,7 +13,7 @@ public class ManaScript : MonoBehaviour
     {
         if (currentMana < maxMana)
         {
-            currentMana++;
+            currentMana += 2;
         }
     }
 

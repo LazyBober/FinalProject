@@ -14,14 +14,14 @@ public class MoveAllButtons : MonoBehaviour
         }
     }
 
-    void MoveButtons()
+    public void MoveButtons()
     {
         foreach (Button btn in buttons)
         {
             RectTransform rect = btn.GetComponent<RectTransform>();
             Vector2 pos = rect.anchoredPosition;
 
-            float direction = moveRight ? 1f : -1f;
+            float direction = moveRight ? 1.5f : -1.5f;
 
             pos.x += 300f * direction;
 

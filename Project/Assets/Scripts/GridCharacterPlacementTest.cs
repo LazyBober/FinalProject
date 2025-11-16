@@ -46,8 +46,8 @@ public class GridCharacterPlacementTest : MonoBehaviour
         {
             SpriteRenderer newPrefabRenderer =
             Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation).GetComponent<SpriteRenderer>();
-
             newPrefabRenderer.material.color = teamColor;
+
             teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
             Destroy(newPrefab);
             placing = false;
@@ -103,7 +103,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
 
             }
         }
-        if (teamColor == Color.red)
+        else if (teamColor == Color.red)
         {
             if (manaScriptRed.currentMana >= 2)
             {
@@ -125,11 +125,11 @@ public class GridCharacterPlacementTest : MonoBehaviour
     {
         if (teamColor == Color.red)
         {
-            manaScriptRed.currentMana += 1;
+            manaScriptRed.currentMana += 2;
         }
         if (teamColor == Color.blue)
         {
-            manaScriptBlue.currentMana += 1;
+            manaScriptBlue.currentMana += 2;
         }
         teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
     }
