@@ -53,4 +53,11 @@ public class CharacterScript : MonoBehaviour
             }
         }
     }
+
+    public void Special()
+    {
+        //tut kastomni specialni ataki yaki
+        //vidbuvayutsia v zalezhnosti vid togo yakiy tse personazh
+        Debug.Log("Attack example");
+    }
 }

@@ -16,6 +16,8 @@ public class GridCharacterPlacementTest : MonoBehaviour
     private bool placing = false;
     private GameObject newPrefab;
 
+    [SerializeField] private GameManager gameManager;
+
     private void Start()
     {
         teamColors.TeamColor = Color.blue;
@@ -59,6 +61,9 @@ public class GridCharacterPlacementTest : MonoBehaviour
             {
                 manaScriptBlue.currentMana += 1;
             }
+            gameManager.AddCharacter(newPrefabRenderer.GetComponent<CharacterScript>());
+            gameManager.Action();
+
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -132,5 +137,6 @@ public class GridCharacterPlacementTest : MonoBehaviour
             manaScriptBlue.currentMana += 2;
         }
         teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
+        gameManager.Action();
     }
 }
