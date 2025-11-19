@@ -1998,6 +1998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22a315959467f947a25ce73b2bee66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushingShape: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   _cart: {fileID: 4653222082274784326}
   _enemyColor: {r: 0, g: 0, b: 0, a: 0}
   _destination: {fileID: 13485234}
@@ -2475,7 +2476,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -4.5, y: -2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2542,7 +2543,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 4.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2757,6 +2758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22a315959467f947a25ce73b2bee66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushingShape: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   _cart: {fileID: 7612947988967252881}
   _enemyColor: {r: 0, g: 0, b: 0, a: 0}
   _destination: {fileID: 395800311}

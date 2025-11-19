@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class CartScript : MonoBehaviour
 {
+    [SerializeField] private Sprite pushingShape;
     [SerializeField] private GameObject _cart;
     [SerializeField] private Color _enemyColor;
     [SerializeField] private Transform _destination;
     [SerializeField] private Color cartColor;
     private bool _gameOver = false;
     [SerializeField] private SceneManagerScript sceneManager;
+
+    private bool movable = true;
 
     void Start()
     {
@@ -41,16 +44,28 @@ public class CartScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Color collisionColor = collision.GetComponent<SpriteRenderer>().material.color;
-        if (collisionColor == cartColor)
+        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+        if (spriteRenderer.sprite == pushingShape)
         {
-            if (cartColor == Color.red)
+            Color collisionColor = collision.GetComponent<SpriteRenderer>().material.color;
+            if (collisionColor == cartColor && movable)
             {
-                _cart.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
+                if (cartColor == Color.red)
+                {
+                    _cart.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
+                }
+                else
+                {
+                    _cart.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
+                }
             }
-            else
+            else if (collisionColor != cartColor)
             {
-                _cart.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
+                movable = false;
+            }
+            else if (!movable)
+            {
+                Debug.Log("Enemy object blocked the way");
             }
         }
     }
