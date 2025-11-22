@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
@@ -6,6 +8,7 @@ public class CharacterScript : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _damage;
     [SerializeField] private bool _overHealable;
+    [SerializeField] private string _characterName;
 
     public void TakeDamage(float amount)
     {
@@ -31,6 +34,7 @@ public class CharacterScript : MonoBehaviour
         _maxHealth = data.MaxHealth;
         _damage = data.Damage;
         _overHealable = data.OverHealable;
+        _characterName = data.CharacterName;
     }
 
     public virtual void Attack(CharacterScript enemy)
@@ -56,8 +60,22 @@ public class CharacterScript : MonoBehaviour
 
     public void Special()
     {
-        //tut kastomni specialni ataki yaki
+        //tut specialni ataki yaki
         //vidbuvayutsia v zalezhnosti vid togo yakiy tse personazh
         Debug.Log("Attack example");
+    }
+
+    private void ArcherSpecial()
+    {
+        Color teamColor = transform.GetComponent<MeshRenderer>().material.color;
+        CharacterScript[] charList = FindObjectsOfType<CharacterScript>();
+        for (int i = 0; i < charList.Length; i++)
+        {
+            Color charColor = charList[i].GetComponent<MeshRenderer>().material.color;
+            if (charColor != teamColor)
+            {
+                Attack(charList[i]);
+            }
+        }
     }
 }

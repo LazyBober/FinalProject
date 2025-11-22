@@ -8,4 +8,5 @@ public class CharacterData : ScriptableObject
     public float MaxHealth;
     public float Damage;
     public bool OverHealable;
+    public string CharacterName;
 }
