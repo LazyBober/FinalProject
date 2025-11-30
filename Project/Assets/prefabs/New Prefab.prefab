@@ -102,6 +102,7 @@ MonoBehaviour:
   _maxHealth: 0
   _damage: 0
   _overHealable: 0
+  _characterName: 
 --- !u!61 &-2705903036477953963
 BoxCollider2D:
   m_ObjectHideFlags: 0
