@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb4a633d9a9ef14a9863cdb5ddeaacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placePrefab: {fileID: 5058659579628377914, guid: 765f96c63f1da72419c8b1ee5e12432d, type: 3}
+  placePrefab: {fileID: 5058659579628377914, guid: d9852f3aa37524c42ad07ff2e3e485c3, type: 3}
   manaScriptBlue: {fileID: 734765365}
   manaScriptRed: {fileID: 1450972776}
   teamColors: {fileID: 1961804764}
@@ -1808,7 +1808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb4a633d9a9ef14a9863cdb5ddeaacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placePrefab: {fileID: 5899823056712603481, guid: 25fe465474386aa499acfa6c19b3e750, type: 3}
+  placePrefab: {fileID: 5899823056712603481, guid: b58d29ede3175d847a16e37bb8f68e93, type: 3}
   manaScriptBlue: {fileID: 734765365}
   manaScriptRed: {fileID: 1450972776}
   teamColors: {fileID: 1961804764}
@@ -2136,12 +2136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22a315959467f947a25ce73b2bee66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushingShape: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  _cart: {fileID: 4653222082274784326}
-  _enemyColor: {r: 0, g: 0, b: 0, a: 0}
-  _destination: {fileID: 13485234}
-  cartColor: {r: 0, g: 0, b: 0, a: 0}
-  sceneManager: {fileID: 1961804765}
 --- !u!1 &1746962169
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,7 +2283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb4a633d9a9ef14a9863cdb5ddeaacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placePrefab: {fileID: 4653222081700044442, guid: 670fa4fd1648d4949b437f75f0f9f30b, type: 3}
+  placePrefab: {fileID: 4653222081700044442, guid: dd9fabd3470b9fd40aaa068647fb3a30, type: 3}
   manaScriptBlue: {fileID: 734765365}
   manaScriptRed: {fileID: 1450972776}
   teamColors: {fileID: 1961804764}
@@ -2812,6 +2806,7 @@ GameObject:
   - component: {fileID: 3315206367759608254}
   - component: {fileID: 1716539244}
   - component: {fileID: 6461883481461474107}
+  - component: {fileID: 6461883481461474108}
   m_Layer: 0
   m_Name: CartRed
   m_TagString: Untagged
@@ -2863,6 +2858,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6461883481461474108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653222082274784326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea4cefb83a75e49bad1394fcde042e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowedShapePrefab: {fileID: 5899823056712603481, guid: b58d29ede3175d847a16e37bb8f68e93, type: 3}
+  moveSpeed: 2
+  moveRight: 1
 --- !u!1 &7612947988967252881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,6 +2887,7 @@ GameObject:
   - component: {fileID: 519309960408710761}
   - component: {fileID: 8113296035363607790}
   - component: {fileID: 8113296035363607791}
+  - component: {fileID: 8113296035363607792}
   m_Layer: 0
   m_Name: CartBlue
   m_TagString: Untagged
@@ -2913,12 +2924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22a315959467f947a25ce73b2bee66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushingShape: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  _cart: {fileID: 7612947988967252881}
-  _enemyColor: {r: 0, g: 0, b: 0, a: 0}
-  _destination: {fileID: 395800311}
-  cartColor: {r: 0, g: 0, b: 0, a: 0}
-  sceneManager: {fileID: 1961804765}
 --- !u!50 &8113296035363607791
 Rigidbody2D:
   serializedVersion: 4
@@ -2946,6 +2951,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8113296035363607792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612947988967252881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ba1d16c87c8d24c9fe376c487f1424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowedShapePrefab: {fileID: 5899823056712603481, guid: b58d29ede3175d847a16e37bb8f68e93, type: 3}
+  moveSpeed: 2
+  moveRight: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

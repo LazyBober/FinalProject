@@ -3,7 +3,15 @@ guid: 96f3a583debb63e4a8664a8c65d5c76f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - themeData: {fileID: 11400000, guid: eb34daf44460693479fabbd5386b1a9a, type: 2}
+  - button1: {instanceID: 0}
+  - button2: {instanceID: 0}
+  - button3: {instanceID: 0}
+  - button4: {instanceID: 0}
+  - button5: {instanceID: 0}
+  - button6: {instanceID: 0}
+  - button7: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
