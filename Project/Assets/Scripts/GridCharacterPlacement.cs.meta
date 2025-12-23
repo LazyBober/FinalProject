@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b5de639ab65d9c143b68a8d87ae96bc3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - placePrefab: {fileID: 5899823056712603481, guid: b58d29ede3175d847a16e37bb8f68e93, type: 3}
+  - teamColors: {instanceID: 0}
+  - gameManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

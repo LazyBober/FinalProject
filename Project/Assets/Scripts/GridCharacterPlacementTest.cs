@@ -1,79 +1,135 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GridCharacterPlacementTest : MonoBehaviour
 {
-    [Header("Prefab to place")]
+    [Header("Prefab")]
     [SerializeField] private GameObject placePrefab;
 
-    [Header("Options")]
-    [SerializeField] private ManaScript manaScriptBlue;
-    [SerializeField] private ManaScript manaScriptRed;
+    [Header("Mana")]
+    [SerializeField] private ManaScript manaBlue;
+    [SerializeField] private ManaScript manaRed;
+
+    [Header("Turn")]
     [SerializeField] private TeamColors teamColors;
-
-    private bool useGrid = true;
-    private float gridSize = 0.5f;
-    private Color teamColor;
-    private bool placing = false;
-    private GameObject newPrefab;
-
     [SerializeField] private GameManager gameManager;
+
+    private GameObject previewPrefab;
+    private bool placing = false;
+    private float gridSize = 0.5f;
 
     private void Start()
     {
         teamColors.TeamColor = Color.blue;
     }
+
     private void Update()
     {
-        teamColor = teamColors.TeamColor;
-        if (!placing)
-        {
+        if (!placing || previewPrefab == null)
             return;
-        }
 
         Vector3 pos = GetMouseWorldPosition();
-        if (useGrid)
-        {
-            pos = SnapToGrid(pos);
-        }
-        newPrefab.transform.position = pos;
+        pos = SnapToGrid(pos);
+        previewPrefab.transform.position = pos;
 
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            newPrefab.transform.Rotate(0, 0, 90);
-        }
-
-        // Left click = confirm place
+        // Подтвердить установку
         if (Input.GetMouseButtonDown(0))
         {
-            SpriteRenderer newPrefabRenderer =
-            Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation).GetComponent<SpriteRenderer>();
-            newPrefabRenderer.material.color = teamColor;
-
-            teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
-            Destroy(newPrefab);
-            placing = false;
-            if (teamColor == Color.red)
-            {
-                manaScriptRed.currentMana += 1;
-            }
-            if (teamColor == Color.blue)
-            {
-                manaScriptBlue.currentMana += 1;
-            }
-            gameManager.AddCharacter(newPrefabRenderer.GetComponent<CharacterScript>());
-            gameManager.Action();
-
+            PlaceObject();
         }
 
+        // Отмена
         if (Input.GetMouseButtonDown(1))
         {
-            Destroy(newPrefab);
-            placing = false;
+            CancelPlacement();
         }
     }
 
-    private static Vector3 GetMouseWorldPosition()
+    public void StartPlacing()
+    {
+        Color teamColor = teamColors.TeamColor;
+
+        if (placing)
+            return;
+
+        if (teamColor == Color.blue && manaBlue.currentMana < 2)
+            return;
+
+        if (teamColor == Color.red && manaRed.currentMana < 2)
+            return;
+
+        placing = true;
+        previewPrefab = Instantiate(placePrefab);
+
+        // Отключаем коллайдер во время перетаскивания
+        Collider2D col = previewPrefab.GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
+        // Цвет превью
+        previewPrefab.GetComponent<SpriteRenderer>().material.color = teamColor;
+
+        if (teamColor == Color.blue)
+            manaBlue.currentMana -= 2;
+        else
+            manaRed.currentMana -= 2;
+    }
+
+    private void PlaceObject()
+    {
+        Color teamColor = teamColors.TeamColor;
+
+        GameObject placed = Instantiate(
+            placePrefab,
+            previewPrefab.transform.position,
+            previewPrefab.transform.rotation
+        );
+
+        PlacedShape character = placed.GetComponent<PlacedShape>();
+        character.Place(teamColor);
+
+        // 🔥 ДВИЖЕНИЕ ТЕЛЕЖЕК (ТОЛЬКО 1 РАЗ)
+        CartBlue blueCart = FindObjectOfType<CartBlue>();
+        if (blueCart != null)
+            blueCart.TryMove(teamColor);
+
+        CartRed redCart = FindObjectOfType<CartRed>();
+        if (redCart != null)
+            redCart.TryMove(teamColor);
+
+        Destroy(previewPrefab);
+        placing = false;
+
+        teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
+        gameManager.Action();
+    }
+
+    private void CancelPlacement()
+    {
+        Color teamColor = teamColors.TeamColor;
+
+        Destroy(previewPrefab);
+        placing = false;
+
+        if (teamColor == Color.blue)
+            manaBlue.currentMana += 2;
+        else
+            manaRed.currentMana += 2;
+    }
+
+    public void SkipTurn()
+    {
+        Color teamColor = teamColors.TeamColor;
+
+        if (teamColor == Color.blue)
+            manaBlue.currentMana += 2;
+        else
+            manaRed.currentMana += 2;
+
+        teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
+        gameManager.Action();
+    }
+
+    private Vector3 GetMouseWorldPosition()
     {
         Vector3 screen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
         Vector3 world = Camera.main.ScreenToWorldPoint(screen);
@@ -89,54 +145,5 @@ public class GridCharacterPlacementTest : MonoBehaviour
             0f
         );
     }
-
-    public void StartPlacing()
-    {
-        if (teamColor == Color.blue)
-        {
-            if (manaScriptBlue.currentMana >= 2)
-            {
-                placing = true;
-
-                if (newPrefab == null)
-                {
-                    newPrefab = Instantiate(placePrefab);
-
-                }
-
-                manaScriptRed.currentMana -= 2;
-
-            }
-        }
-        else if (teamColor == Color.red)
-        {
-            if (manaScriptRed.currentMana >= 2)
-            {
-                placing = true;
-
-                if (newPrefab == null)
-                {
-                    newPrefab = Instantiate(placePrefab);
-
-                }
-
-                manaScriptBlue.currentMana -= 2;
-
-            }
-        }
-    }
-
-    public void SkipTurn()
-    {
-        if (teamColor == Color.red)
-        {
-            manaScriptRed.currentMana += 2;
-        }
-        if (teamColor == Color.blue)
-        {
-            manaScriptBlue.currentMana += 2;
-        }
-        teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
-        gameManager.Action();
-    }
 }
+
