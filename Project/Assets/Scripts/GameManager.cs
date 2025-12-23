@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<CharacterScript> _charactersOnScene = new List<CharacterScript>();
+    [SerializeField] private TextMeshProUGUI charactersOnSceneText;
 
     public void Action()
     {
@@ -13,6 +15,11 @@ public class GameManager : MonoBehaviour
         {
             _charactersOnScene[0].Special();
         }
+    }
+
+    public void Update()
+    {
+        charactersOnSceneText.text = $"characters on scene: {_charactersOnScene.Count}";
     }
 
     public void AddCharacter(CharacterScript character)

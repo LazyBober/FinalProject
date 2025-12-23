@@ -3,7 +3,9 @@ using UnityEngine;
 public class GridCharacterPlacementTest : MonoBehaviour
 {
     [Header("Prefab to place")]
-    [SerializeField] private GameObject placePrefab;
+    [SerializeField] private GameObject placePrefabRed;
+    [SerializeField] private GameObject placePrefabBlue;
+    private GameObject placePrefab;
 
     [Header("Options")]
     [SerializeField] private ManaScript manaScriptBlue;
@@ -21,6 +23,7 @@ public class GridCharacterPlacementTest : MonoBehaviour
     private void Start()
     {
         teamColors.TeamColor = Color.blue;
+        placePrefab = placePrefabBlue;
     }
     private void Update()
     {
@@ -46,9 +49,16 @@ public class GridCharacterPlacementTest : MonoBehaviour
         // Left click = confirm place
         if (Input.GetMouseButtonDown(0))
         {
+            if (teamColor == Color.blue)
+            {
+                placePrefab = placePrefabBlue;
+            }
+            if (teamColor == Color.red)
+            {
+                placePrefab = placePrefabRed;
+            }
             SpriteRenderer newPrefabRenderer =
             Instantiate(placePrefab, newPrefab.transform.position, newPrefab.transform.rotation).GetComponent<SpriteRenderer>();
-            newPrefabRenderer.material.color = teamColor;
 
             teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
             Destroy(newPrefab);

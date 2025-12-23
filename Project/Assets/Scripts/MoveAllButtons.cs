@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class MoveAllButtons : MonoBehaviour
 {
+    [SerializeField] GridLayoutGroup glg;
     [SerializeField] private Button[] buttons;
     private bool moveRight = true;
 
@@ -16,17 +17,13 @@ public class MoveAllButtons : MonoBehaviour
 
     public void MoveButtons()
     {
-        foreach (Button btn in buttons)
-        {
-            RectTransform rect = btn.GetComponent<RectTransform>();
-            Vector2 pos = rect.anchoredPosition;
+        RectTransform rect = glg.GetComponent<RectTransform>();
+        Vector2 pos = rect.anchoredPosition;
 
-            float direction = moveRight ? 1.5f : -1.5f;
+        pos.x += moveRight ? 260f : -260f;
+        rect.anchoredPosition = pos;
 
-            pos.x += 300f * direction;
-
-            rect.anchoredPosition = pos;
-        }
+        glg.startCorner = moveRight ? GridLayoutGroup.Corner.UpperRight : GridLayoutGroup.Corner.UpperLeft;
 
         moveRight = !moveRight;
     }
