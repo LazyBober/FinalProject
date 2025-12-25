@@ -2,30 +2,36 @@
 
 public class GridCharacterPlacementTest : MonoBehaviour
 {
-    [Header("Prefab")]
-    [SerializeField] private GameObject placePrefab;
-
-    [Header("Mana")]
-    [SerializeField] private ManaScript manaBlue;
-    [SerializeField] private ManaScript manaRed;
+    [Header("Data")]
+    [SerializeField] private CharacterData data;
 
     [Header("Turn")]
     [SerializeField] private TeamColors teamColors;
     [SerializeField] private GameManager gameManager;
 
     private GameObject previewPrefab;
-    private bool placing = false;
+    public bool placing = false;
     private float gridSize = 0.5f;
 
     private void Start()
     {
+        previewPrefab = data.PrefabNormal;
         teamColors.TeamColor = Color.blue;
     }
 
     private void Update()
     {
-        if (!placing || previewPrefab == null)
+
+        ///////////////////////////////////////////////////////////////////////
+        // TUT YA VYRISHIV SHO BUDE PROSTO KURSOR ZAMIST PREFABU BEZ KOLYORU //
+        ///////////////////////////////////////////////////////////////////////
+        
+        
+
+        if (!placing)
+        {
             return;
+        }
 
         Vector3 pos = GetMouseWorldPosition();
         pos = SnapToGrid(pos);
@@ -49,52 +55,33 @@ public class GridCharacterPlacementTest : MonoBehaviour
         Color teamColor = teamColors.TeamColor;
 
         if (placing)
+        {
             return;
-
-        if (teamColor == Color.blue && manaBlue.currentMana < 2)
-            return;
-
-        if (teamColor == Color.red && manaRed.currentMana < 2)
-            return;
+        }
 
         placing = true;
-        previewPrefab = Instantiate(placePrefab);
+        previewPrefab.SetActive(true);
 
         // Отключаем коллайдер во время перетаскивания
         Collider2D col = previewPrefab.GetComponent<Collider2D>();
         if (col != null)
+        {
             col.enabled = false;
-
-        // Цвет превью
-        previewPrefab.GetComponent<SpriteRenderer>().material.color = teamColor;
-
-        if (teamColor == Color.blue)
-            manaBlue.currentMana -= 2;
-        else
-            manaRed.currentMana -= 2;
+        }
     }
 
     private void PlaceObject()
     {
         Color teamColor = teamColors.TeamColor;
 
-        GameObject placed = Instantiate(
-            placePrefab,
-            previewPrefab.transform.position,
-            previewPrefab.transform.rotation
-        );
+        GameObject placed = teamColor == Color.blue ? Instantiate(data.PrefabBlue, previewPrefab.transform.position, previewPrefab.transform.rotation)
+            : Instantiate(data.PrefabRed, previewPrefab.transform.position, previewPrefab.transform.rotation);
+
 
         PlacedShape character = placed.GetComponent<PlacedShape>();
         character.Place(teamColor);
 
-        // 🔥 ДВИЖЕНИЕ ТЕЛЕЖЕК (ТОЛЬКО 1 РАЗ)
-        CartBlue blueCart = FindObjectOfType<CartBlue>();
-        if (blueCart != null)
-            blueCart.TryMove(teamColor);
 
-        CartRed redCart = FindObjectOfType<CartRed>();
-        if (redCart != null)
-            redCart.TryMove(teamColor);
 
         Destroy(previewPrefab);
         placing = false;
@@ -109,22 +96,11 @@ public class GridCharacterPlacementTest : MonoBehaviour
 
         Destroy(previewPrefab);
         placing = false;
-
-        if (teamColor == Color.blue)
-            manaBlue.currentMana += 2;
-        else
-            manaRed.currentMana += 2;
     }
 
     public void SkipTurn()
     {
         Color teamColor = teamColors.TeamColor;
-
-        if (teamColor == Color.blue)
-            manaBlue.currentMana += 2;
-        else
-            manaRed.currentMana += 2;
-
         teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
         gameManager.Action();
     }

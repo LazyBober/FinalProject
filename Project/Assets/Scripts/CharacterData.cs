@@ -9,4 +9,11 @@ public class CharacterData : ScriptableObject
     public float Damage;
     public bool OverHealable;
     public string CharacterName;
+    public bool CanPushCart;
+    public bool CanBlockCart;   
+
+    [Header("Other")]
+    public GameObject PrefabNormal;
+    public GameObject PrefabBlue;
+    public GameObject PrefabRed;
 }

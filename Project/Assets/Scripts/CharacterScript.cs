@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
 {
-    [SerializeField] private float _health;
-    [SerializeField] private float _maxHealth;
-    [SerializeField] private float _damage;
-    [SerializeField] private bool _overHealable;
-    [SerializeField] private string _characterName;
+    [SerializeField] public float _health;
+    [SerializeField] public float _maxHealth;
+    [SerializeField] public float _damage;
+    [SerializeField] public bool _overHealable;
+    [SerializeField] public string _characterName;
+    [SerializeField] public bool _canPushCart;
+    [SerializeField] public bool _canBlockCart;
+    [SerializeField] public string team;
 
     public void TakeDamage(float amount)
     {
@@ -35,6 +38,8 @@ public class CharacterScript : MonoBehaviour
         _damage = data.Damage;
         _overHealable = data.OverHealable;
         _characterName = data.CharacterName;
+        _canPushCart = data.CanPushCart;
+        _canBlockCart = data.CanBlockCart;
     }
 
     public virtual void Attack(CharacterScript enemy)

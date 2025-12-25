@@ -13,9 +13,10 @@ public class PlacedShape : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
 
-        // Пока фигура таскается — коллайдера нет
         if (col != null)
+        {
             col.enabled = false;
+        }
     }
 
     public void Place(Color teamColor)
@@ -24,10 +25,13 @@ public class PlacedShape : MonoBehaviour
         isPlaced = true;
 
         if (sr != null)
+        {
             sr.material.color = teamColor;
-
+        }
         if (col != null)
+        {
             col.enabled = true;
+        }
     }
 }
 

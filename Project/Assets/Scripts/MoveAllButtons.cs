@@ -21,7 +21,7 @@ public class MoveAllButtons : MonoBehaviour
             RectTransform rect = btn.GetComponent<RectTransform>();
             Vector2 pos = rect.anchoredPosition;
 
-            float direction = moveRight ? 1.5f : -1.5f;
+            float direction = moveRight ? 2.1f : -2.1f;
 
             pos.x += 300f * direction;
 

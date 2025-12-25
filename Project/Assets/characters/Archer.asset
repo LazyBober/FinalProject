@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928d74bb432330e469d351192b4e4d38, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  Health: 3
+  MaxHealth: 5
+  Damage: 1
+  OverHealable: 1
+  CharacterName: archer
+  CanPushCart: 0
+  PrefabNormal: {fileID: 5058659579628377914, guid: d9852f3aa37524c42ad07ff2e3e485c3, type: 3}
+  PrefabBlue: {fileID: 5058659579628377914, guid: f76531cb07ad7c348a0b46cfef41eb8d, type: 3}
+  PrefabRed: {fileID: 5058659579628377914, guid: ca589e225e991f046b221aa570811300, type: 3}

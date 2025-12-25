@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928d74bb432330e469d351192b4e4d38, type: 3}
+  m_Name: Juggernaut
+  m_EditorClassIdentifier: 
+  Health: 10
+  MaxHealth: 14
+  Damage: 0
+  OverHealable: 1
+  CharacterName: juggernaut
+  CanPushCart: 1
+  PrefabNormal: {fileID: 5899823056712603481, guid: b58d29ede3175d847a16e37bb8f68e93, type: 3}
+  PrefabBlue: {fileID: 5899823056712603481, guid: 95cb3fe2ef87cf14f9a45ce745d5f6d9, type: 3}
+  PrefabRed: {fileID: 5899823056712603481, guid: f37415d10574423458f6fe8f9b0f1839, type: 3}

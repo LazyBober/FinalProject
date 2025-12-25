@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5899823056712603481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.48497373, y: -0.3527112, z: 0}
+  m_LocalPosition: {x: 2, y: -3, z: 0}
   m_LocalScale: {x: 0.59341, y: 0.59341, z: 0.59341}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,6 +104,8 @@ MonoBehaviour:
   _damage: 0
   _overHealable: 0
   _characterName: 
+  _canPushCart: 0
+  team: 
 --- !u!61 &-2705903036477953963
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +113,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5899823056712603481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -161,3 +163,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc97e918b636f846a454139bdcda366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shapeColor: {r: 0, g: 0, b: 0, a: 0}
+  isPlaced: 0
