@@ -21,10 +21,10 @@ public class PointerScript : MonoBehaviour
 
     private Vector3 GetMouseWorldPosition()
     {
-            Vector3 screen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
-            Vector3 world = Camera.main.ScreenToWorldPoint(screen);
-            world.z = 0f;
-            return world;
+        Vector3 screen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
+        Vector3 world = Camera.main.ScreenToWorldPoint(screen);
+        world.z = 0f;
+        return world;
     }
 
     private Vector3 SnapToGrid(Vector3 pos)

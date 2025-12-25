@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928d74bb432330e469d351192b4e4d38, type: 3}
+  m_Name: Healer
+  m_EditorClassIdentifier: 
+  Health: 4
+  MaxHealth: 4
+  Damage: 0
+  OverHealable: 0
+  CharacterName: healer
+  CanPushCart: 0
+  CanBlockCart: 0
+  PrefabNormal: {fileID: 4653222081700044442, guid: dd9fabd3470b9fd40aaa068647fb3a30, type: 3}
+  PrefabBlue: {fileID: 4653222081700044442, guid: f7afc2a152b4b9340bab027cb30c3d97, type: 3}
+  PrefabRed: {fileID: 4653222081700044442, guid: f230e386be173ff4a972b4f7c2ff369a, type: 3}

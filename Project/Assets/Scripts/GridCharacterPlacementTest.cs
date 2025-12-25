@@ -81,7 +81,8 @@ public class GridCharacterPlacementTest : MonoBehaviour
         PlacedShape character = placed.GetComponent<PlacedShape>();
         character.Place(teamColor);
 
-
+        CharacterScript actualCharacter = placed.GetComponent<CharacterScript>();
+        actualCharacter.SetStats(data);
 
         Destroy(previewPrefab);
         placing = false;

@@ -17,8 +17,7 @@ public class CartScript : MonoBehaviour
 
     void Start()
     {
-        _cart.GetComponent<SpriteRenderer>().material.color = _cartColor;
-        
+        _cartColor = _cart.GetComponent<Color>();
     }
 
     void Update()
@@ -35,7 +34,7 @@ public class CartScript : MonoBehaviour
         if (spriteRenderer._canPushCart == true)
         {
             Color collisionColor = collision.GetComponent<SpriteRenderer>().material.color;
-            if (_cart.GetComponent<CartScript>().team == spriteRenderer.team && movable)
+            if (_cart.GetComponent<CartScript>().team == spriteRenderer.team && movable && spriteRenderer._canPushCart)
             {
                 if (_cartColor == Color.red)
                 {
@@ -46,7 +45,7 @@ public class CartScript : MonoBehaviour
                     _cart.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
                 }
             }
-            else if (_cart.GetComponent<CartScript>().team != spriteRenderer.team && )
+            else if (_cart.GetComponent<CartScript>().team != spriteRenderer.team && spriteRenderer._canBlockCart)
             {
                 movable = false;
             }
