@@ -10,7 +10,8 @@ public class CharacterData : ScriptableObject
     public bool OverHealable;
     public string CharacterName;
     public bool CanPushCart;
-    public bool CanBlockCart;   
+    public bool CanBlockCart;
+    public bool movable;
 
     [Header("Other")]
     public GameObject PrefabNormal;

@@ -17,7 +17,7 @@ public class CartScript : MonoBehaviour
 
     void Start()
     {
-        _cartColor = _cart.GetComponent<Color>();
+
     }
 
     void Update()
@@ -31,21 +31,21 @@ public class CartScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterScript spriteRenderer = collision.GetComponent<CharacterScript>();
-        if (spriteRenderer._canPushCart == true)
+        if (spriteRenderer.canPushCart == true)
         {
             Color collisionColor = collision.GetComponent<SpriteRenderer>().material.color;
-            if (_cart.GetComponent<CartScript>().team == spriteRenderer.team && movable && spriteRenderer._canPushCart)
+            if (_cart.GetComponent<CartScript>().team == spriteRenderer.team && movable && spriteRenderer.canPushCart)
             {
-                if (_cartColor == Color.red)
+                if (team == "r")
                 {
                     _cart.transform.position = new Vector2(transform.position.x + 0.5f, transform.position.y);
                 }
-                else
+                else if (team == "b")
                 {
                     _cart.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
                 }
             }
-            else if (_cart.GetComponent<CartScript>().team != spriteRenderer.team && spriteRenderer._canBlockCart)
+            else if (_cart.GetComponent<CartScript>().team != spriteRenderer.team && spriteRenderer.canBlockCart)
             {
                 movable = false;
             }

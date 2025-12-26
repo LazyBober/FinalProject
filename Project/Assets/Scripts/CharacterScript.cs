@@ -1,26 +1,33 @@
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
 {
-    [SerializeField] public float _health;
-    [SerializeField] public float _maxHealth;
-    [SerializeField] public float _damage;
-    [SerializeField] public bool _overHealable;
-    [SerializeField] public string _characterName;
-    [SerializeField] public bool _canPushCart;
-    [SerializeField] public bool _canBlockCart;
+    [SerializeField] public float health;
+    [SerializeField] public float maxHealth;
+    [SerializeField] public float damage;
+    [SerializeField] public bool overHealable;
+    [SerializeField] public string characterName;
+    [SerializeField] public bool canPushCart;
+    [SerializeField] public bool canBlockCart;
     [SerializeField] public string team;
+    [SerializeField] public bool movable;
 
+    private bool stunned;
+
+    public bool inEnemySMRange;
+
+    private void Awake()
+    {
+        stunned = false;
+    }
     public void TakeDamage(float amount)
     {
-        _health -= amount;
-        if (_health <= 0f)
+        health -= amount;
+        if (health <= 0f)
         {
-            if (_health < 0f)
+            if (health < 0f)
             {
-                _health = 0f;
+                health = 0f;
             }
             Die();
         }
@@ -33,41 +40,46 @@ public class CharacterScript : MonoBehaviour
 
     public void SetStats(CharacterData data)
     {
-        _health = data.Health;
-        _maxHealth = data.MaxHealth;
-        _damage = data.Damage;
-        _overHealable = data.OverHealable;
-        _characterName = data.CharacterName;
-        _canPushCart = data.CanPushCart;
-        _canBlockCart = data.CanBlockCart;
+        health = data.Health;
+        maxHealth = data.MaxHealth;
+        damage = data.Damage;
+        overHealable = data.OverHealable;
+        characterName = data.CharacterName;
+        canPushCart = data.CanPushCart;
+        canBlockCart = data.CanBlockCart;
+        movable = data.movable;
     }
 
     public virtual void Attack(CharacterScript enemy)
     {
-        enemy._health -= _damage;
+        enemy.health -= damage;
     }
 
     public void GetHeal(float amount)
     {
-        if (_overHealable)
+        if (overHealable)
         {
-            _health += amount;
+            health += amount;
         }
-        else if (!_overHealable)
+        else if (!overHealable)
         {
-            _health += amount;
-            if (_health < _maxHealth)
+            health += amount;
+            if (health < maxHealth)
             {
-                _health = _maxHealth;
+                health = maxHealth;
             }
         }
     }
 
     public void Special()
     {
-        //tut specialni ataki yaki
-        //vidbuvayutsia v zalezhnosti vid togo yakiy tse personazh
-        Debug.Log("Attack example");
+        if (!stunned)
+        {
+            if (name == "archer")
+            {
+                ArcherSpecial();
+            }
+        }
     }
 
     private void ArcherSpecial()
@@ -76,11 +88,40 @@ public class CharacterScript : MonoBehaviour
         CharacterScript[] charList = FindObjectsOfType<CharacterScript>();
         for (int i = 0; i < charList.Length; i++)
         {
-            Color charColor = charList[i].GetComponent<MeshRenderer>().material.color;
-            if (charColor != teamColor)
+            if (charList[i].team != team)
             {
                 Attack(charList[i]);
             }
         }
+    }
+
+    private void StrongManSpecial()
+    {
+        CharacterScript[] charList = FindObjectsOfType<CharacterScript>();
+        foreach (CharacterScript character in charList)
+        {
+            if (character.team != team && character.inEnemySMRange)
+            {
+                Attack(character);
+            }
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (name == "juggernaut")
+        {
+            CharacterScript character = collision.GetComponent<CharacterScript>();
+            if (character != null)
+            {
+                character.inEnemySMRange = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
     }
 }

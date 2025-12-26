@@ -84,7 +84,6 @@ public class GridCharacterPlacementTest : MonoBehaviour
         CharacterScript actualCharacter = placed.GetComponent<CharacterScript>();
         actualCharacter.SetStats(data);
 
-        Destroy(previewPrefab);
         placing = false;
 
         teamColors.TeamColor = teamColor == Color.blue ? Color.red : Color.blue;
@@ -95,7 +94,6 @@ public class GridCharacterPlacementTest : MonoBehaviour
     {
         Color teamColor = teamColors.TeamColor;
 
-        Destroy(previewPrefab);
         placing = false;
     }
 

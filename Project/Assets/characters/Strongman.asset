@@ -18,6 +18,8 @@ MonoBehaviour:
   OverHealable: 0
   CharacterName: strongman
   CanPushCart: 1
+  CanBlockCart: 1
+  movable: 1
   PrefabNormal: {fileID: 5501613318539776516, guid: ef79e59399a49bc4b8c277e11eeb6669, type: 3}
   PrefabBlue: {fileID: 5501613318539776516, guid: 7753e7bf567779544bbf9d29f46cd64b, type: 3}
   PrefabRed: {fileID: 5501613318539776516, guid: cf694d6112d7c944a87c036ab6797800, type: 3}

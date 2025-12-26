@@ -18,6 +18,8 @@ MonoBehaviour:
   OverHealable: 1
   CharacterName: archer
   CanPushCart: 0
+  CanBlockCart: 0
+  movable: 1
   PrefabNormal: {fileID: 5058659579628377914, guid: d9852f3aa37524c42ad07ff2e3e485c3, type: 3}
   PrefabBlue: {fileID: 5058659579628377914, guid: f76531cb07ad7c348a0b46cfef41eb8d, type: 3}
   PrefabRed: {fileID: 5058659579628377914, guid: ca589e225e991f046b221aa570811300, type: 3}

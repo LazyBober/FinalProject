@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4653222081700044442}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.48497373, y: -0.3527112, z: 0}
+  m_LocalPosition: {x: 4.5, y: 3.5, z: 0}
   m_LocalScale: {x: 0.57574, y: 0.57574, z: 0.57574}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,11 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc88ec29abe32b843a60de6095642644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
-  _maxHealth: 0
-  _damage: 0
-  _overHealable: 0
-  _characterName: 
+  health: 0
+  maxHealth: 0
+  damage: 0
+  overHealable: 0
+  characterName: 
+  canPushCart: 0
+  canBlockCart: 0
+  team: 
+  movable: 0
 --- !u!61 &-5908165669669747870
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111,7 +115,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4653222081700044442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -161,3 +165,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc97e918b636f846a454139bdcda366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shapeColor: {r: 0, g: 0, b: 0, a: 0}
+  isPlaced: 0

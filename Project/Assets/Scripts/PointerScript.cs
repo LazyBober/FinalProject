@@ -16,7 +16,7 @@ public class PointerScript : MonoBehaviour
 
     void Update()
     {
-
+        pointer.transform.position = SnapToGrid(GetMouseWorldPosition());
     }
 
     private Vector3 GetMouseWorldPosition()

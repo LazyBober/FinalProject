@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5899823056712603481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -3, z: 0}
+  m_LocalPosition: {x: 4, y: 3, z: 0}
   m_LocalScale: {x: 0.59341, y: 0.59341, z: 0.59341}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,13 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc88ec29abe32b843a60de6095642644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
-  _maxHealth: 0
-  _damage: 0
-  _overHealable: 0
-  _characterName: 
-  _canPushCart: 0
+  health: 0
+  maxHealth: 0
+  damage: 0
+  overHealable: 0
+  characterName: 
+  canPushCart: 0
+  canBlockCart: 0
   team: 
+  movable: 0
 --- !u!61 &-2705903036477953963
 BoxCollider2D:
   m_ObjectHideFlags: 0
