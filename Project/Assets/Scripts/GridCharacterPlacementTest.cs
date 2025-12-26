@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class GridCharacterPlacementTest : MonoBehaviour
 {
@@ -13,14 +14,26 @@ public class GridCharacterPlacementTest : MonoBehaviour
     public bool placing = false;
     private float gridSize = 0.5f;
 
+    [SerializeField] private TextMeshProUGUI placingSign;
+
     private void Start()
     {
         previewPrefab = data.PrefabNormal;
         teamColors.TeamColor = Color.blue;
+
+        placingSign.gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        if (placing)
+        {
+            placingSign.gameObject.SetActive(true);
+        }
+        else if (!placing)
+        {
+            placingSign.gameObject.SetActive(false);       
+        }
 
         ///////////////////////////////////////////////////////////////////////
         // TUT YA VYRISHIV SHO BUDE PROSTO KURSOR ZAMIST PREFABU BEZ KOLYORU //

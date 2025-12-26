@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
@@ -15,6 +16,8 @@ public class CharacterScript : MonoBehaviour
     private bool stunned;
 
     public bool inEnemySMRange;
+
+    
 
     private void Awake()
     {
@@ -75,10 +78,18 @@ public class CharacterScript : MonoBehaviour
     {
         if (!stunned)
         {
-            if (name == "archer")
+            if (characterName == "archer")
             {
                 ArcherSpecial();
             }
+            else if (characterName == "strongman")
+            {
+                StrongManSpecial();
+            }
+        }
+        else
+        {
+            stunned = false;
         }
     }
 
@@ -103,6 +114,7 @@ public class CharacterScript : MonoBehaviour
             if (character.team != team && character.inEnemySMRange)
             {
                 Attack(character);
+                character.stunned = true;
             }
         }
 
@@ -110,10 +122,10 @@ public class CharacterScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (name == "juggernaut")
+        if (characterName == "strongman")
         {
             CharacterScript character = collision.GetComponent<CharacterScript>();
-            if (character != null)
+            if (character != null && character.team != team)
             {
                 character.inEnemySMRange = true;
             }
@@ -122,6 +134,13 @@ public class CharacterScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (characterName == "strongman")
+        {
+            CharacterScript character = collision.GetComponent<CharacterScript>();
+            if (character != null && character.team != team)
+            {
+                character.inEnemySMRange = false;
+            }
+        }
     }
 }
